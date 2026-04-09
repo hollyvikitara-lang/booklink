@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-        content="width=device-width,initial-scale=1.0">
-        <title>Booklink</title>
-    </head>
-    <body>
-        <h1>Welcome to Booklink</h1>
-        <p>Find books. Discover stores.</p>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booklink</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Booklink</h1>
+    <p>Find books. Discover stores.</p>
+
+    <!-- Search -->
+    <input type="text" id="searchInput" placeholder="Search for a book...">
+    <button onclick="searchBook()">Search</button>
+
+    <!-- Add Book -->
+    <h2>Add a Book</h2>
+    <input type="text" id="titleInput" placeholder="Book title">
+    <input type="text" id="authorInput" placeholder="Author">
+    <input type="text" id="storeInput" placeholder="Store">
+    <button onclick="addBook()">Add Book</button>
+
+    <!-- Results -->
+    <h2 id="resultsHeading">Available books</h2>
+    <div id="results"></div>
+
+    <script src="js/script.js"></script>
+</body>
 </html>
+
+
