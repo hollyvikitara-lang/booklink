@@ -27,21 +27,32 @@ function saveBooks(){
 
 function searchBook() {
     const input = document.getElementById("searchInput").value.toLowerCase();
-
+if (input === ""){
+    document.getElementById("resultsHeading").textContent= "Available Books";
+    displayResults(books);
+    return;
+}
     const results = books.filter(book =>
         book.title.toLowerCase().includes(input) ||
         book.author.toLowerCase().includes(input) ||
         book.store.toLowerCase().includes(input)
     );
+    if (input === ""){
+        document.getElementById("resultsHeading").textContent = "Available Books";
+
+    } else {
 document.getElementById("resultsHeading").textContent = "Search Results";
     displayResults(results);
 }
+    }
+
 
 function displayResults(results) {
     const resultsDiv = document.getElementById("results");
 
     if (results.length > 0) {
-resultsDiv.innerHTML = results.map((book, index) => `
+resultsDiv.innerHTML = 
+results.map((book, index) => `
     <div class="book">
         <h3>${book.title}</h3>
         <p><strong>Author:</strong> ${book.author}</p>
@@ -61,7 +72,7 @@ function addBook() {
     const store = document.getElementById("storeInput").value.trim();
 
     if (title === "" || author === "" || store === "") {
-        alert("Please fill in all fields");
+        showMessage("Please fill in all fields","error");
         return;
     }
 
@@ -79,11 +90,28 @@ function addBook() {
     document.getElementById("authorInput").value = "";
     document.getElementById("storeInput").value = "";
 
-    alert("Book added successfully");
+    showMessage("Book added successfully","success");
 }
 
 document.getElementById("resultsHeading").textContent = "Available Books";
 displayResults(books);
+
+function deleteBook(index){
+    books.splice(index,1);
+    saveBooks();
+    displayResults(books);
+}
+function showMessage(message,type){
+    const messageBox = 
+    document.getElementById("messageBox");
+    messageBox.textContent = message;
+    messageBox.className = type;
+    messageBox.style.display = "block";
+
+    setTimeout(() => {
+        messageBox.style.display = "none";
+    },2500);
+}
 
 
 
